@@ -13,6 +13,20 @@ const newQuoteBtn = document.getElementById('new-quote');
 
 function newQuote() {
     let quoteNumber = Math.floor(Math.random() * quotesList.length);
+
+    let quote = quotesList[quoteNumber];
+
+    //replace author name 'null' with 'Unknown'
+
+    if (!quote.text){
+        authorName.textContent = 'Unknown';
+    } else {
+        authorName.textContent = quote.author;
+    }
+    quoteText.textContent = quote.text;
+
+    console.log(quote.text);
+    console.log(quote.author);
 }
 
 // Get Quote from API
@@ -21,7 +35,7 @@ async function getQuote() {
 
     const response = await fetch(proxyURL + url);
     quotesList = await response.json();
-    
+    console.log(quotesList);
     try {
 
     } catch (error) {
