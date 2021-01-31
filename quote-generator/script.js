@@ -13,20 +13,24 @@ const newQuoteBtn = document.getElementById('new-quote');
 
 function newQuote() {
     let quoteNumber = Math.floor(Math.random() * quotesList.length);
-
     let quote = quotesList[quoteNumber];
 
-    //replace author name 'null' with 'Unknown'
+    // replace author name 'null' with 'Unknown'
 
     if (!quote.text){
         authorName.textContent = 'Unknown';
     } else {
         authorName.textContent = quote.author;
     }
-    quoteText.textContent = quote.text;
 
-    console.log(quote.text);
-    console.log(quote.author);
+    // Change font size for long quotes
+
+    if (quote.text.length > 100) {
+        quoteText.classList.add('long-quote');
+    } else {
+        quoteText.classList.remove('long-quote')
+    }
+    quoteText.textContent = quote.text;
 }
 
 // Get Quote from API
@@ -36,6 +40,7 @@ async function getQuote() {
     const response = await fetch(proxyURL + url);
     quotesList = await response.json();
     console.log(quotesList);
+    newQuote();
     try {
 
     } catch (error) {
@@ -45,5 +50,4 @@ async function getQuote() {
 }
 
 // On Load
-
 getQuote();
