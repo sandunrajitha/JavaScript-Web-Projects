@@ -17,7 +17,7 @@ function newQuote() {
 
     // replace author name 'null' with 'Unknown'
 
-    if (!quote.text){
+    if (!quote.author){
         authorName.textContent = 'Unknown';
     } else {
         authorName.textContent = quote.author;
@@ -31,6 +31,9 @@ function newQuote() {
         quoteText.classList.remove('long-quote')
     }
     quoteText.textContent = quote.text;
+
+    console.log(quote.text);
+    console.log(quote.author);
 }
 
 // Get Quote from API
@@ -39,6 +42,7 @@ async function getQuote() {
 
     const response = await fetch(proxyURL + url);
     quotesList = await response.json();
+    
     console.log(quotesList);
     newQuote();
     try {
@@ -48,6 +52,17 @@ async function getQuote() {
         console.log('error getting quote', error);
     }
 }
+
+// Tweet a Quote
+
+function tweetQuote() {
+    const twitterURL = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${author.textContent}`;
+    window.open(twitterURL, '_blank');
+}
+
+// Event Listeners
+twitterBtn.addEventListener('click', tweetQuote);
+newQuoteBtn.addEventListener('click', newQuote);
 
 // On Load
 getQuote();
