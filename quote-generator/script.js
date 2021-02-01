@@ -1,5 +1,5 @@
 let quotesList = [];
-const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+const proxyURL = 'https://rajitha-cors-anywhere-server.herokuapp.com/';
 // const url = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
 const url = 'http://type.fit/api/quotes';
 
