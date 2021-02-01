@@ -8,10 +8,25 @@ const quoteText = document.getElementById('quote');
 const authorName = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
+const loader = document.getElementById('loader');
+
+// Loading animation
+
+function loading() {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+function loadingComplete() {
+    loader.hidden = true;
+    quoteContainer.hidden = false;
+}
+
 
 // New Quote
 
 function newQuote() {
+    loading();
     let quoteNumber = Math.floor(Math.random() * quotesList.length);
     let quote = quotesList[quoteNumber];
 
@@ -31,15 +46,13 @@ function newQuote() {
         quoteText.classList.remove('long-quote')
     }
     quoteText.textContent = quote.text;
-
-    console.log(quote.text);
-    console.log(quote.author);
+    loadingComplete();
 }
 
 // Get Quote from API
 
 async function getQuote() {
-
+    loading();
     const response = await fetch(proxyURL + url);
     quotesList = await response.json();
     
