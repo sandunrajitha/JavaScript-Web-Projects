@@ -32,9 +32,27 @@ h3 {
     font-size: 1.2rem;
 }
 
+strong {
+    color: #577590;
+}
+
 p {
     color: #43aa8b;
     font-size: 125%;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+ul {
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    color: #43aa8b;
+}
+
+li {
+    font-size: 110%;
 }
 
 hr {
