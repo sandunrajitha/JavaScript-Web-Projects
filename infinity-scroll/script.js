@@ -6,7 +6,7 @@ let ready = false;
 
 let photosArray = [];
 
-const count = 20;
+const count = 10; // initially load 10 images for better user experience
 const resource = `https://rajitha-api-proxy.herokuapp.com/api/infinite-scroll?count=${count}`
 
 //check if all the images were loaded
@@ -15,6 +15,7 @@ function imageLoaded() {
     if (imagesLoaded === photosArray.length) {
         ready = true;
         loader.hidden = true;
+        count = 30;
     }
 }
 
